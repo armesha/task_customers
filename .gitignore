@@ -3,6 +3,8 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+/.env.dev
+/.env.test
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
@@ -24,8 +26,18 @@ composer.phar
 
 # Docker
 docker-compose.override.yml
+compose.override.yaml
 
 # Symfony specific
 /var/log/*
 /var/cache/*
 .php-cs-fixer.cache
+
+# PHPUnit
+/phpunit.xml
+.phpunit.result.cache
+
+# Node
+/node_modules/
+npm-debug.log
+yarn-error.log
