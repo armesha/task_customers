@@ -1,0 +1,58 @@
+###> symfony/framework-bundle ###
+/.env
+/.env.local
+/.env.local.php
+/.env.*.local
+/.env.dev
+/.env.test
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+# IDE & Editors
+/.idea/
+/.vscode/
+*.sublime-workspace
+*.sublime-project
+/.fleet/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# PHP files
+*.php~
+composer.phar
+*.bak
+*.swp
+
+# Docker
+docker-compose.override.yml
+compose.override.yaml
+
+# Symfony specific
+/var/log/*
+/var/cache/*
+.php-cs-fixer.cache
+symfony.lock
+/coverage/
+/tools/php-cs-fixer/
+.php-cs-fixer.dist.php
+
+# Build & deployment
+/build/
+/dist/
+
+# PHPUnit
+/phpunit.xml
+.phpunit.result.cache
+
+# Node
+/node_modules/
+npm-debug.log
+yarn-error.log
+
+# txt
+*.txt
