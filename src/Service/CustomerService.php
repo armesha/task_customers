@@ -7,6 +7,7 @@ use App\Repository\CustomerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+// Servisni trida pro business logiku zakazniku
 class CustomerService
 {
     public function __construct(
@@ -15,6 +16,8 @@ class CustomerService
         private ValidatorInterface $validator
     ) {}
 
+    // Ziskat filtrovany seznam zakazniku
+    // Predava parametry do repository
     public function getFilteredCustomers(array $filters): array
     {
         return $this->customerRepository->findByFilters(
@@ -26,6 +29,8 @@ class CustomerService
         );
     }
 
+    // Vytvorit noveho zakaznika
+    // Obsahuje validaci dat
     public function createCustomer(string $name): array
     {
         $customer = new Customer();
@@ -49,4 +54,4 @@ class CustomerService
             'total_spent' => 0
         ];
     }
-} 
+}

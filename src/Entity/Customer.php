@@ -8,14 +8,17 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+// Entita zakaznika - hlavni tabulka
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
 class Customer
 {
+    // ID zakaznika - auto increment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    // Jmeno zakaznika - povinne pole, 2-255 znaku
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Name is required')]
     #[Assert\Length(
@@ -26,6 +29,7 @@ class Customer
     )]
     private ?string $name = null;
 
+    // Vazba na vydaje - jeden zakaznik ma vice vydaju
     #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Spending::class, orphanRemoval: true)]
     private Collection $spendings;
 

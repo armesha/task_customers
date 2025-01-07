@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Customer>
  */
+// Repository pro praci s databazi zakazniku
 class CustomerRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -16,8 +17,11 @@ class CustomerRepository extends ServiceEntityRepository
         parent::__construct($registry, Customer::class);
     }
 
+    // Vyhledavani zakazniku podle filtru
+    // Podporuje: hledani podle jmena, filtrovani podle vydaju, razeni
     public function findByFilters(?string $name = null, ?float $minTotalSpent = null, ?float $maxTotalSpent = null, string $sortBy = 'name', string $sortOrder = 'ASC'): array
     {
+        // Zakladni dotaz s joinovanymi vydaji
         $qb = $this->createQueryBuilder('c')
             ->select('c.id, c.name')
             ->addSelect('COALESCE(SUM(s.amount), 0) as total_spent')

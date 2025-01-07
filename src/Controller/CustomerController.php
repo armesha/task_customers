@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// API kontroler pro zakazniky
 #[Route('/api/users')]
 class CustomerController extends AbstractController
 {
@@ -16,6 +17,8 @@ class CustomerController extends AbstractController
         private CustomerService $customerService
     ) {}
 
+    // GET - ziskat seznam zakazniku
+    // params: name, min_total_spent, max_total_spent, sort_by, sort_order
     #[Route('', methods: ['GET'])]
     public function list(Request $request): JsonResponse
     {
@@ -39,6 +42,8 @@ class CustomerController extends AbstractController
         }
     }
 
+    // POST - vytvorit noveho zakaznika
+    // povinny param: name
     #[Route('', methods: ['POST'])]
     public function create(Request $request): JsonResponse
     {

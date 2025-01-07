@@ -7,6 +7,7 @@ use App\Repository\CustomerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+// Servisni trida pro spravu vydaju zakazniku
 class SpendingService
 {
     public function __construct(
@@ -15,6 +16,8 @@ class SpendingService
         private ValidatorInterface $validator
     ) {}
 
+    // Vytvorit novy vydaj pro zakaznika
+    // Kontroluje existenci zakaznika a validuje castku
     public function createSpending(int $customerId, string $date, float $amount): array
     {
         $customer = $this->customerRepository->find($customerId);
@@ -52,4 +55,4 @@ class SpendingService
             'amount' => $spending->getAmount()
         ];
     }
-} 
+}

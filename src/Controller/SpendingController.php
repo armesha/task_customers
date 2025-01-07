@@ -9,14 +9,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/api/users')]
+// API kontroler pro spravu vydaju
+#[Route('/api/users/{id}/spendings')]
 class SpendingController extends AbstractController
 {
     public function __construct(
         private SpendingService $spendingService
     ) {}
 
-    #[Route('/{id}/spending', methods: ['POST'])]
+    // POST - pridat novy vydaj pro zakaznika
+    // params: date, amount
+    #[Route('', methods: ['POST'])]
     public function create(int $id, Request $request): JsonResponse
     {
         try {

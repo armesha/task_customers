@@ -7,24 +7,29 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+// Entita vydaju - zaznamy o utratach zakazniku
 #[ORM\Entity(repositoryClass: SpendingRepository::class)]
 class Spending
 {
+    // ID vydaje - auto increment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    // Vazba na zakaznika - many-to-one
     #[ORM\ManyToOne(inversedBy: 'spendings')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotNull(message: 'Customer is required')]
     private ?Customer $customer = null;
 
+    // Datum vydaje
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotNull(message: 'Date is required')]
     #[Assert\Type("\DateTimeInterface")]
     private ?\DateTimeInterface $date = null;
 
+    // Castka vydaje
     #[ORM\Column]
     #[Assert\NotNull(message: 'Amount is required')]
     #[Assert\Type('float', message: 'Amount must be a number')]
